@@ -1,0 +1,18 @@
+language:
+    - cpp
+
+before_install:
+    - sudo apt-get update -qq
+    - git clone https://github.com/IntelligentHome/External.git ../External
+    - cd ../External
+    - git submodule update --init --remote --recursive
+    - cd ../Gpio_driver
+
+install:
+    - sudo apt-get install -qq gcc-avr binutils-avr avr-libc
+
+script:
+    - mkdir bin
+
+notifications:
+    email: false
