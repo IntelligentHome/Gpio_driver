@@ -12,15 +12,16 @@ GpioAvr::GpioAvr(
         pport_(pport),
         pin_(pin)
 {
+    *pddr_ |= (1 << pin_);
 }
 
 
 void GpioAvr::Set(void) {
-
+    *pport_ |= (1 << pin_);
 }
 
 void GpioAvr::Clear(void) {
-
+    *pport_ &= ~(1 << pin_);
 }
 
 void GpioAvr::Toggle(void) {
