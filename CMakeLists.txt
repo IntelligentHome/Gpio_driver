@@ -10,7 +10,7 @@ find_program(AVR_AR avr-ar)
 find_program(AVR_RANLIB avr-ranlib)
 
 set(SOURCES
-    Gpio_driver.cpp
+    GpioAvrDriver.cpp
     )
 
 include_directories(

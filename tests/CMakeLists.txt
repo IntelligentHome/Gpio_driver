@@ -27,6 +27,8 @@ add_library(googletest ${GOOGLETEST_SOURCES})
 add_executable(
     Gpio_driver_unit_tests
     main.cc
+    GpioAvrTests.cc
+    ../GpioAvrDriver.cpp
     )
 
 add_dependencies(Gpio_driver_unit_tests googletest)
