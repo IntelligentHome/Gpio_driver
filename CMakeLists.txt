@@ -13,6 +13,10 @@ set(SOURCES
     Gpio_driver.cpp
     )
 
+include_directories(
+    ../External/include/
+    )
+
 set(CMAKE_CXX_COMPILER avr-g++)
 set(CMAKE_AR ${AVR_AR})
 set(CMAKE_RANLIB ${AVR_RANLIB})
