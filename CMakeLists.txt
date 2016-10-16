@@ -1,4 +1,5 @@
 
+set(CMAKE_SYSTEM_NAME Generic)
 cmake_minimum_required(VERSION 2.8)
 
 project(Gpio_driver)
