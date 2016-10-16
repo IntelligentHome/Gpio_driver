@@ -12,7 +12,7 @@ install:
     - sudo apt-get install -qq gcc-avr binutils-avr avr-libc
 
 script:
-    - ./build.sh travis
+    - ./build.sh -bt
 
 notifications:
     email: false

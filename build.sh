@@ -1,9 +1,19 @@
+#!/bin/bash
+
+BUILD=0
+TEST=0
+CLEAN=0
+
+EXIT_CODE=0
+
+BUILD_DIR=bin
+TEST_DIR=bin_tests
 
 function build_Gpio_driver {
     local retval=0
 
-    mkdir -p bin
-    cd bin
+    mkdir -p $BUILD_DIR
+    cd $BUILD_DIR
     cmake ..
     make
     retval=$?
@@ -15,8 +25,8 @@ function build_Gpio_driver {
 function run_tests {
     local retval=0
 
-    mkdir -p bin_tests
-    cd bin_tests
+    mkdir -p $TEST_DIR
+    cd $TEST_DIR
     cmake ../tests
     make
     ./Gpio_driver_unit_tests
@@ -27,31 +37,42 @@ function run_tests {
 }
 
 function clean {
-    rm -r -f bin
-    rm -r -f bin_tests
+    rm -r $BUILD_DIR
+    rm -r $TEST_DIR
 }
 
-if [ "$1" == "build" ]; then
-    build_Gpio_driver
-fi
+while getopts ":btc" opt; do
+    case $opt in
+        b)
+            BUILD=1 ;;
+        t)
+            TEST=1 ;;
+        c)
+            CLEAN=1 ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >$2
+            exit 1 ;;
+    esac
+done
 
-if [ "$1" == "tests" ]; then
-    run_tests
-fi
-
-if [ "$1" == "clean" ]; then
-    clean
-fi
-
-if [ "$1" == "travis" ]; then
+if [ 1 == $BUILD ]; then
     build_Gpio_driver
     if [ $? != 0 ]; then
-        exit 1
+        $EXIT_CODE=1
     fi
+fi
 
+if [ 1 == $TEST ]; then
     run_tests
     if [ $? != 0 ]; then
-        exit 1
+        $EXIT_CODE=1
+    fi
+fi
+
+if [ 1 == $CLEAN ]; then
+    clean
+    if [ $? != 0 ]; then
+        $EXIT_CODE=1
     fi
 fi
 
