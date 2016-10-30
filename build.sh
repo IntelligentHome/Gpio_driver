@@ -76,3 +76,5 @@ if [ 1 == $CLEAN ]; then
     fi
 fi
 
+exit $EXIT_CODE
+
