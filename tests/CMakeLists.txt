@@ -38,3 +38,4 @@ target_link_libraries(
     googletest
     pthread
     )
+
