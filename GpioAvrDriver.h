@@ -20,9 +20,9 @@ public:
 
 private:
 
-    volatile uint8_t	*pddr_;
-    volatile uint8_t	*pport_;
-    uint8_t	            pin_;
+    volatile uint8_t    *pddr_;
+    volatile uint8_t    *pport_;
+    uint8_t             pin_;
 };
 
 } /*namespace gpio_avr_driver*/
