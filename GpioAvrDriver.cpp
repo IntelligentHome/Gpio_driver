@@ -4,24 +4,24 @@
 namespace gpio_avr_driver {
 
 GpioAvr::GpioAvr(
-        volatile uint8_t *pddr,
-        volatile uint8_t *pport,
+        volatile uint8_t& ddr,
+        volatile uint8_t& port,
         uint8_t           pin)
         :
-        pddr_(pddr),
-        pport_(pport),
+        ddr_(ddr),
+        port_(port),
         pin_(pin)
 {
-    *pddr_ |= (1 << pin_);
+    ddr_ |= (1 << pin_);
 }
 
 
 void GpioAvr::Set(void) {
-    *pport_ |= (1 << pin_);
+    port_ |= (1 << pin_);
 }
 
 void GpioAvr::Clear(void) {
-    *pport_ &= ~(1 << pin_);
+    port_ &= ~(1 << pin_);
 }
 
 void GpioAvr::Toggle(void) {
