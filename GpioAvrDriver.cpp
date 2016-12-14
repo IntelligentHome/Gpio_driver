@@ -36,14 +36,14 @@ void GpioAvr::Set(void) {
     if (gpio_driver::GPIO_OUTPUT == direction_)
         port_ |= (1 << pad_num_);
     else if (gpio_driver::GPIO_INPUT == direction_)
-        pin_ |= (1 << pad_num_);
+        ddr_ &= ~(1 << pad_num_);
 }
 
 void GpioAvr::Clear(void) {
     if (gpio_driver::GPIO_OUTPUT == direction_)
         port_ &= ~(1 << pad_num_);
     else if (gpio_driver::GPIO_INPUT == direction_)
-        pin_ &= ~(1 << pad_num_);
+        ddr_ |= (1 << pad_num_);
 }
 
 void GpioAvr::SetDirection(const gpio_driver::GpioDirection direction) {
