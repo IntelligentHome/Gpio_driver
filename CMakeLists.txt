@@ -6,9 +6,18 @@ project(Gpio_driver)
 
 include (../External/PlatformDependency.cmake)
 
-set(SOURCES
-    GpioAvrDriver.cpp
-    )
+if (${_TARGET_PLATFORM} STREQUAL "AVR")
+
+    set(SOURCES
+        GpioAvrDriver.cpp
+        )
+
+elseif (${_TARGET_PLATFORM} STREQUAL "RASPBERRYPI")
+
+    set (SOURCES
+        GpioRpi.cpp
+        )
+endif()
 
 include_directories(
     ../External/include/
