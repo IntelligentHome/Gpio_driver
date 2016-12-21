@@ -21,9 +21,13 @@ public:
 
 private:
 
+    static volatile unsigned    *gpio_;
+    static uint8_t              is_memory_mapped_;
     uint8_t                     pad_num_;
     gpio_driver::GpioDirection  direction_;
     gpio_driver::GpioPull       pull_;
+
+    void MapGpioMemory(void);
 };
 
 } /*namespace gpio_rpi*/
